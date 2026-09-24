@@ -445,7 +445,11 @@ section[id] {
   counter-increment: principle;
   display: grid;
   grid-template-columns: 4.25rem 1fr;
+  grid-template-areas:
+    'num title'
+    'num text';
   column-gap: 0.75rem;
+  row-gap: 0.35rem;
   padding: 1.2rem 0;
   border-top: 1px solid var(--line);
 }
@@ -456,6 +460,7 @@ section[id] {
 
 .principles li::before {
   content: counter(principle, decimal-leading-zero);
+  grid-area: num;
   font-family: 'Newsreader Variable', Georgia, serif;
   font-style: italic;
   font-size: 1.35rem;
@@ -464,6 +469,12 @@ section[id] {
 }
 
 .principles h3 {
+  grid-area: title;
+  margin-top: 0;
+}
+
+.principles p {
+  grid-area: text;
   margin-top: 0;
 }
 
