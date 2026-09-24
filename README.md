@@ -37,6 +37,10 @@ The project is ready for Vercel or Netlify. Import the repository and use the de
 
 Both hosts detect Astro. The config files make the build and publish directory explicit.
 
+The site opens in the dark theme. Light is available from the theme control, and that choice is remembered in the browser. A light system preference does not switch the first visit.
+
+Connecting the GitHub repo to Vercel (or Netlify) turns on a preview URL for each pull request. Until that connection exists, previews are not created automatically.
+
 ## Domain
 
 The intended host is [hyprcore.com](https://hyprcore.com). DNS is not configured in this repo. `site` is left unset in `astro.config.mjs` until the domain actually serves this build. When it does, set `site: 'https://hyprcore.com'` there if you want canonical URLs.

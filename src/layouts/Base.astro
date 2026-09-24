@@ -42,12 +42,7 @@ const year = new Date().getFullYear();
       (function () {
         try {
           var stored = localStorage.getItem('nodalume-theme');
-          var theme =
-            stored === 'light' || stored === 'dark'
-              ? stored
-              : window.matchMedia('(prefers-color-scheme: light)').matches
-                ? 'light'
-                : 'dark';
+          var theme = stored === 'light' ? 'light' : 'dark';
           document.documentElement.setAttribute('data-theme', theme);
           var meta = document.getElementById('theme-color');
           if (meta) meta.setAttribute('content', theme === 'light' ? '#f3efe6' : '#121410');
