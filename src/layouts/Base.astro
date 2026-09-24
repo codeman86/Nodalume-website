@@ -1,0 +1,207 @@
+---
+import '@fontsource-variable/figtree';
+import '@fontsource-variable/newsreader/opsz.css';
+import '@fontsource-variable/newsreader/opsz-italic.css';
+import '../styles/global.css';
+import Mark from '../components/Mark.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Nodalume Systems',
+  description = 'Clarity at the critical points of a system. Nodalume Systems is a working name for practical work across homelab, software, research, and day-to-day coordination.',
+} = Astro.props;
+
+const fullTitle =
+  title === 'Nodalume Systems'
+    ? 'Nodalume Systems — Clarity at the critical points of a system'
+    : `${title} — Nodalume Systems`;
+
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#121410" id="theme-color" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{fullTitle}</title>
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('nodalume-theme');
+          var theme = stored === 'light' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+          var meta = document.getElementById('theme-color');
+          if (meta) meta.setAttribute('content', theme === 'light' ? '#f3efe6' : '#121410');
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#content">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap header-bar">
+        <a class="mark" href="/">
+          <Mark />
+          <span class="mark-text">
+            <span class="mark-name">Nodalume</span>
+            <span class="mark-sys">Systems</span>
+          </span>
+        </a>
+        <div class="header-actions">
+          <button
+            type="button"
+            class="nav-toggle"
+            data-menu-toggle
+            aria-expanded="false"
+            aria-controls="site-nav"
+          >
+            <span class="menu-open-label">Menu</span>
+            <span class="menu-close-label">Close</span>
+          </button>
+          <button
+            type="button"
+            data-theme-toggle
+            aria-label="Switch to light theme"
+            title="Switch to light theme"
+          >
+            <svg class="theme-icon when-dark" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+              <path
+                d="M12 3v2.2M12 18.8V21M3 12h2.2M18.8 12H21M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"></path>
+            </svg>
+            <svg class="theme-icon when-light" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M16.2 3.4A8.1 8.1 0 1 0 20.6 14 6.3 6.3 0 0 1 16.2 3.4z"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linejoin="round"></path>
+            </svg>
+          </button>
+        </div>
+        <nav id="site-nav" class="site-nav" data-nav aria-label="Primary">
+          <a href="/#work">What we do</a>
+          <a href="/#method">How we work</a>
+          <a href="/#focus">Focus</a>
+          <a href="/#note">Note</a>
+        </nav>
+      </div>
+    </header>
+    <slot />
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div>
+          <a class="mark" href="/">
+            <Mark />
+            <span class="mark-text">
+              <span class="mark-name">Nodalume</span>
+              <span class="mark-sys">Systems</span>
+            </span>
+          </a>
+          <p class="footer-meaning">Clarity at the critical points of a system.</p>
+        </div>
+        <div class="footer-meta">
+          <p>© {year} Nodalume Systems</p>
+          <a href="https://github.com/codeman86">Cody Hadley on GitHub</a>
+        </div>
+      </div>
+    </footer>
+    <script>
+      const root = document.documentElement;
+      const themeBtn = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+      const menuBtn = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+      const nav = document.querySelector<HTMLElement>('[data-nav]');
+      const themeColor = document.querySelector<HTMLMetaElement>('#theme-color');
+
+      function applyTheme(theme: 'dark' | 'light') {
+        root.setAttribute('data-theme', theme);
+        if (themeColor) themeColor.content = theme === 'light' ? '#f3efe6' : '#121410';
+        if (themeBtn) {
+          const label = theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+          themeBtn.setAttribute('aria-label', label);
+          themeBtn.title = label;
+        }
+        try {
+          localStorage.setItem('nodalume-theme', theme);
+        } catch {
+          /* private mode */
+        }
+      }
+
+      applyTheme(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+
+      themeBtn?.addEventListener('click', () => {
+        const current = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+      });
+
+      function setMenu(open: boolean) {
+        if (!nav || !menuBtn) return;
+        nav.classList.toggle('is-open', open);
+        menuBtn.setAttribute('aria-expanded', String(open));
+      }
+
+      menuBtn?.addEventListener('click', () => {
+        setMenu(!nav?.classList.contains('is-open'));
+      });
+
+      nav?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setMenu(false));
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          setMenu(false);
+          menuBtn?.focus();
+        }
+      });
+
+      root.classList.add('js');
+
+      const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-nav] a[href*="#"]')];
+      const sections = links
+        .map((link) => {
+          const id = link.hash.slice(1);
+          return id ? document.getElementById(id) : null;
+        })
+        .filter((section): section is HTMLElement => section !== null);
+
+      if (sections.length > 0) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            const visible = entries
+              .filter((entry) => entry.isIntersecting)
+              .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+            if (!visible) return;
+            links.forEach((link) => {
+              if (link.hash === `#${visible.target.id}`) link.setAttribute('aria-current', 'true');
+              else link.removeAttribute('aria-current');
+            });
+          },
+          { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.25, 0.5] },
+        );
+        sections.forEach((section) => observer.observe(section));
+      }
+    </script>
+  </body>
+</html>

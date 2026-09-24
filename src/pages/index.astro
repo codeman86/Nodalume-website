@@ -1,0 +1,148 @@
+---
+import Base from '../layouts/Base.astro';
+import NodeField from '../components/NodeField.astro';
+---
+
+<Base>
+  <main id="content">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="kicker">Noda- (node) + -lume (light)</p>
+          <h1 id="hero-title">
+            <span class="name-line">Nodalume</span>
+            <span class="name-line">Systems</span>
+          </h1>
+          <p class="meaning">Clarity at the critical points of a system.</p>
+          <p class="lede">
+            A working name for practical work: personal IT, homelab and servers, 3D printing,
+            software, research, and the coordination that keeps a day moving.
+          </p>
+          <a class="text-link" href="/#work">What we do</a>
+        </div>
+        <div class="hero-art">
+          <NodeField />
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="work" aria-labelledby="work-title">
+      <div class="wrap">
+        <p class="kicker">What we do</p>
+        <h2 id="work-title">A banner for the work, not a catalog.</h2>
+        <p class="intro">
+          Nodalume Systems is Cody Hadley’s name for getting real things done. There is no product
+          line behind the word. There is a habit of looking at a system, finding the points that
+          matter, and making those points clear enough to act on.
+        </p>
+        <div class="work-grid">
+          <article>
+            <p class="idx">01</p>
+            <h3>See the critical point</h3>
+            <p>
+              The useful part of a system is rarely the whole diagram. It is a service that must
+              stay up, a setting that changes the outcome, a file that has to be found again.
+              Start there.
+            </p>
+          </article>
+          <article>
+            <p class="idx">02</p>
+            <h3>Do the work in front of you</h3>
+            <p>
+              Homelab, servers, personal IT, 3D printing, software, and research. Setup, repair,
+              and the ordinary middle where things either run or they do not.
+            </p>
+          </article>
+          <article>
+            <p class="idx">03</p>
+            <h3>Leave the next session easier</h3>
+            <p>
+              Names, notes, and small tools, added only when the work needs them. The aim is to
+              return faster than last time.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="method" aria-labelledby="method-title">
+      <div class="wrap">
+        <p class="kicker">How we work</p>
+        <h2 id="method-title">Lean on purpose.</h2>
+        <p class="intro">
+          A short set of habits. Enough to keep the work honest, and light enough to actually use.
+        </p>
+        <ol class="principles">
+          <li>
+            <h3>Work first</h3>
+            <p>Name the job before naming the tool.</p>
+          </li>
+          <li>
+            <h3>Light the node</h3>
+            <p>Make the critical point visible before adding more around it.</p>
+          </li>
+          <li>
+            <h3>Stay small</h3>
+            <p>Prefer the least machinery that still holds.</p>
+          </li>
+          <li>
+            <h3>Leave a trail</h3>
+            <p>Write down enough that rediscovery is not the first step.</p>
+          </li>
+          <li>
+            <h3>Finish</h3>
+            <p>A running result is the standard. Process is there to serve it.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="band" id="focus" aria-labelledby="focus-title">
+      <div class="wrap">
+        <p class="kicker">Focus</p>
+        <h2 id="focus-title">Where the work sits.</h2>
+        <ul class="focus-list">
+          <li>
+            <h3>Homelab &amp; servers</h3>
+            <p>
+              Networks, machines, and services close to home. What is running, why it is there,
+              and how to put it back.
+            </p>
+          </li>
+          <li>
+            <h3>Software</h3>
+            <p>
+              Tools and applications shaped around a real task. Built, fixed, and kept while they
+              earn their place.
+            </p>
+          </li>
+          <li>
+            <h3>3D printing &amp; making</h3>
+            <p>
+              The physical bench. Know the critical settings, then produce the thing.
+            </p>
+          </li>
+          <li>
+            <h3>Research</h3>
+            <p>Reading, notes, and questions held so they can be found again.</p>
+          </li>
+          <li>
+            <h3>Coordination</h3>
+            <p>Schedules, handoffs, and the next action. Enough order that the day can move.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="band note" id="note" aria-labelledby="note-title">
+      <div class="wrap">
+        <p class="kicker">Note</p>
+        <h2 id="note-title">Nothing here is for sale.</h2>
+        <p class="intro">
+          This page is a public mark for the name. If Nodalume Systems grows into more later, the
+          site can grow with it. It does not need a storefront in the meantime.
+        </p>
+      </div>
+    </section>
+  </main>
+</Base>
